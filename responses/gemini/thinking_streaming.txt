@@ -1,0 +1,4 @@
+data: {"candidates": [{"content": {"parts": [{"text": "There are"}],"role": "model"},"index": 0}],"usageMetadata": {"promptTokenCount": 11,"candidatesTokenCount": 2,"totalTokenCount": 176,"promptTokensDetails": [{"modality": "TEXT","tokenCount": 11}],"thoughtsTokenCount": 163},"modelVersion": "gemini-2.5-flash","responseId": "mUfRaeWSO_G-_uMPoL6KgAo"}
+
+data: {"candidates": [{"content": {"parts": [{"text": " **3** \"r\" letters in the word \"strawberry\"."}],"role": "model"},"finishReason": "STOP","index": 0}],"usageMetadata": {"promptTokenCount": 11,"candidatesTokenCount": 15,"totalTokenCount": 189,"promptTokensDetails": [{"modality": "TEXT","tokenCount": 11}],"thoughtsTokenCount": 163},"modelVersion": "gemini-2.5-flash","responseId": "mUfRaeWSO_G-_uMPoL6KgAo"}
+

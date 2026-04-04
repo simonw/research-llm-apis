@@ -7,3 +7,6 @@
 [submodule "client-libraries/openai-python"]
 	path = client-libraries/openai-python
 	url = https://github.com/openai/openai-python
+[submodule "client-libraries/python-genai"]
+	path = client-libraries/python-genai
+	url = https://github.com/googleapis/python-genai

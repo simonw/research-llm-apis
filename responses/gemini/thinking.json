@@ -1,0 +1,30 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "There are **3** \"r\" letters in the word \"strawberry\"."
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 11,
+    "candidatesTokenCount": 15,
+    "totalTokenCount": 212,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11
+      }
+    ],
+    "thoughtsTokenCount": 186
+  },
+  "modelVersion": "gemini-2.5-flash",
+  "responseId": "fkbRaaPtDq2N_PUPju6OgQM"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "chatcmpl-DQyjjws5imx3SREjLUOl2YeWsP4mE",
+  "object": "chat.completion",
+  "created": 1775322371,
+  "model": "o3-mini-2025-01-31",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "The word \"strawberry\" contains 3 r letters.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 16,
+    "completion_tokens": 90,
+    "total_tokens": 106,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 64,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_8c93b0a79f"
+}

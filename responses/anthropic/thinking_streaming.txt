@@ -1,0 +1,48 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-sonnet-4-5-20250929","id":"msg_017evamLFzdD57ypULK3Jcmx","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":47,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":8,"service_tier":"standard","inference_geo":"not_available"}}            }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}   }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"I need to count the number of times"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" the letter \"r\" appears in the word \"strawberry\".\n\nLet me go through each letter in \"strawberry\":\ns - t - r - a - w - b - e - r - r - y\n\n1. s - not an r"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"\n2. t - not an r\n3. r - this is an r (1st r)\n4. a - not an r\n5. w - not an r\n6. b - not an r\n7. e - not an r\n8. r - this is an r ("}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"2nd r)\n9. r - this is an r (3rd r)\n10. y - not an r\n\nSo there are 3 r's in the word \"strawberry\"."}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"signature_delta","signature":"EuQECmQIDBgCKkDN4e4b68ONQ0raXhaDyddkJ1zHJjNPwyjU9zmw2WkZYv+KTTTf2Bxs0saM7VNWgwndZvdIKtrIcB7p4CBgwadTMhpjbGF1ZGUtc29ubmV0LTQtNS0yMDI1MDkyOTgAEgykFxmyeXymNhMs1FIaDB+rY8eO9/xnM+68SiIw45Zui2iMyHQvf0933EyHMDYmosOx93fUNMNZZ0pfhb+tkDHeNEeP6yBpxVHOTDvyKq0Dl8eXFCPoJzshBLPfZ5N1FWd6mrYCCt6FuukhPc6guND34iIcQ/tqxgm5wLQakoHiqz6yq4FeEzI7L5QK+ZF/SvEPaFsf9zMvQbx0xKsD+8Zr/osvZ5Kxmtg5qhrajxvSvTVWLLnoVBuJsoXOa5AJSIisVzOX+Q9YpC1XetjNrG9eXMvcgJTZKUpobTEoBRuUYGtkDZ1TBuZB4L2Dmyd4PLlJOmqnOGO2yZJUBK0KmYRyMXFZUotUx58alxNDv/gkjDa8M1vr8cqRCKe6owl5fh6P905Yi2UtfzN8Yt46dYeOS/IWlfzmChbDWvyK5Pz+dytEAmzc5IX412fXRrSVfCuqt1VTRtwKLXCceSZ2rzTr9cvod3wtCemEux4YGaB3CZq88HszzffLM+S7RHqy3zefWcpA1bpMVxNqIdOHieyozDQd3F7ns2vVYJlH1B4dj/31B6SNWrnxJiqXcR1s3W2kZBeQb4G3BtKys4znxxMuux64TWjlaUKa34gw+e7OOzFunEJsheNVenGYX1Gv2xM31r/9oZRpo4WTZ4x3sgJxpavZBf7TFKN3SW73GAE="}     }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0               }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"text","text":""}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"To count the letter"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" \"r\" in the word \"strawberry\", I'll go through each letter:\n\ns-t-r-a-w-b-e-r-r-y\n\nThe letter \"r\" appears **3 times** in the word \""}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"strawberry\":\n- Once in position 3\n- Once in position 8\n- Once in position 9"}              }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1         }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":47,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":259}              }
+
+event: message_stop
+data: {"type":"message_stop"  }
+

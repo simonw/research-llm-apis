@@ -1,0 +1,152 @@
+{
+  "id": "resp_0e337df51d4b79040069d14509edb081a0975c5dc7b4a803de",
+  "object": "response",
+  "created_at": 1775322378,
+  "status": "completed",
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1775322427,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-4.1-mini-2025-04-14",
+  "output": [
+    {
+      "id": "ws_0e337df51d4b79040069d1450b85d881a0b5b5ac4e6f1f30b1",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "latest news about OpenAI"
+        ],
+        "query": "latest news about OpenAI"
+      }
+    },
+    {
+      "id": "msg_0e337df51d4b79040069d14513324081a0bb3822ef65895db8",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 585,
+              "start_index": 478,
+              "title": "OpenAI reshuffles as top execs step back for health reasons",
+              "url": "https://www.axios.com/2026/04/03/openai-fidji-simo-medical-leave-reshuffle?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 998,
+              "start_index": 903,
+              "title": "OpenAI opens the door to individual investors",
+              "url": "https://www.axios.com/2026/03/31/openai-ai-stock-investors-ipo?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1349,
+              "start_index": 1263,
+              "title": "OpenAI acquires tech talk show TBPN",
+              "url": "https://www.axios.com/2026/04/02/openai-acquires-tbpn?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1701,
+              "start_index": 1610,
+              "title": "OpenAI: Ending its AI video feature",
+              "url": "https://theweek.com/business/openai-ending-ai-video-sora?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 2138,
+              "start_index": 1989,
+              "title": "OpenAI Defends Pentagon Deal, Claims Safety Exceeds Anthropic\u2019s - Bloomberg",
+              "url": "https://www.bloomberg.com/news/articles/2026-02-28/openai-gives-pentagon-access-to-models-after-anthropic-dustup?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 2313,
+              "start_index": 2158,
+              "title": "OpenAI reshuffles as top execs step back for health reasons",
+              "url": "https://www.axios.com/2026/04/03/openai-fidji-simo-medical-leave-reshuffle?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 2476,
+              "start_index": 2347,
+              "title": "OpenAI opens the door to individual investors",
+              "url": "https://www.axios.com/2026/03/31/openai-ai-stock-investors-ipo?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 2621,
+              "start_index": 2511,
+              "title": "OpenAI acquires tech talk show TBPN",
+              "url": "https://www.axios.com/2026/04/02/openai-acquires-tbpn?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "As of April 4, 2026, OpenAI has been involved in several significant developments:\n\n**Leadership Changes**\n\nFidji Simo, OpenAI's head of AGI deployment, is taking several weeks of medical leave to address a recurrence of postural orthostatic tachycardia syndrome (POTS). During her absence, Greg Brockman will oversee the product organization, and Chief Operating Officer Brad Lightcap will focus on special projects, including potential partnerships with private equity firms. ([axios.com](https://www.axios.com/2026/04/03/openai-fidji-simo-medical-leave-reshuffle?utm_source=openai))\n\n**Financial Milestones**\n\nOpenAI has raised $122 billion in its latest funding round, achieving a post-money valuation of $852 billion. This funding includes contributions from strategic partners like Amazon, NVIDIA, and SoftBank, as well as individual investors through exchange-traded funds managed by ARK Invest. ([axios.com](https://www.axios.com/2026/03/31/openai-ai-stock-investors-ipo?utm_source=openai))\n\n**Product and Service Updates**\n\n- **Acquisition of TBPN**: OpenAI has acquired TBPN, a tech and business talk show known for its daily live broadcasts. This acquisition aims to influence public discourse around AI and maintain the show's critical tech coverage. ([axios.com](https://www.axios.com/2026/04/02/openai-acquires-tbpn?utm_source=openai))\n\n- **Shutdown of Sora**: OpenAI has discontinued Sora, its AI video generation tool, just six months after its launch. The decision ends a major partnership with Disney and reflects a strategic shift towards developing AI agents and next-generation AI models. ([theweek.com](https://theweek.com/business/openai-ending-ai-video-sora?utm_source=openai))\n\n**Strategic Partnerships**\n\nOpenAI has agreed to deploy its AI models within the U.S. Department of Defense's classified network, emphasizing principles that prohibit domestic mass surveillance and require human responsibility for the use of force, including autonomous weapon systems. ([bloomberg.com](https://www.bloomberg.com/news/articles/2026-02-28/openai-gives-pentagon-access-to-models-after-anthropic-dustup?utm_source=openai))\n\n\n## Highlights:\n- [OpenAI reshuffles as top execs step back for health reasons](https://www.axios.com/2026/04/03/openai-fidji-simo-medical-leave-reshuffle?utm_source=openai), Published on Friday, April 03\n- [OpenAI opens the door to individual investors](https://www.axios.com/2026/03/31/openai-ai-stock-investors-ipo?utm_source=openai), Published on Tuesday, March 31\n- [OpenAI acquires tech talk show TBPN](https://www.axios.com/2026/04/02/openai-acquires-tbpn?utm_source=openai), Published on Thursday, April 02 "
+        }
+      ],
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": null,
+  "reasoning": {
+    "effort": null,
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "type": "web_search_preview",
+      "search_context_size": "medium",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 1.0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 310,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 646,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 956
+  },
+  "user": null,
+  "metadata": {}
+}

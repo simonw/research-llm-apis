@@ -1,0 +1,2 @@
+data: {"candidates": [{"content": {"parts": [{"functionCall": {"name": "get_weather","args": {"location": "San Francisco"}}}],"role": "model"},"finishReason": "STOP"}],"usageMetadata": {"promptTokenCount": 30,"candidatesTokenCount": 6,"totalTokenCount": 36,"promptTokensDetails": [{"modality": "TEXT","tokenCount": 30}],"candidatesTokensDetails": [{"modality": "TEXT","tokenCount": 6}]},"modelVersion": "gemini-2.0-flash","responseId": "fUbRacajKv3Cx_APoqCsmAQ"}
+
