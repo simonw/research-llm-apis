@@ -1,0 +1,9 @@
+[submodule "client-libraries/anthropic-sdk-python"]
+	path = client-libraries/anthropic-sdk-python
+	url = https://github.com/anthropics/anthropic-sdk-python
+[submodule "client-libraries/client-python"]
+	path = client-libraries/client-python
+	url = https://github.com/mistralai/client-python
+[submodule "client-libraries/openai-python"]
+	path = client-libraries/openai-python
+	url = https://github.com/openai/openai-python
