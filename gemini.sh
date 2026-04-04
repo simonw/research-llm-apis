@@ -16,7 +16,7 @@ BASE_URL="https://generativelanguage.googleapis.com/v1beta"
 OUTDIR="responses/gemini"
 mkdir -p "$OUTDIR"
 
-IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # --- 1. Non-streaming text completion ---
 echo "==> Gemini: non-streaming text completion"
@@ -52,8 +52,8 @@ curl -s "$BASE_URL/models/gemini-2.0-flash:streamGenerateContent?alt=sse&key=$AP
 # --- 3. Vision input (inline image via URL fetch) ---
 echo ""
 echo "==> Gemini: vision input"
-# Gemini supports inline_data with base64. We'll fetch the image and encode it.
-IMAGE_B64=$(curl -s "$IMAGE_URL" | base64)
+# Gemini supports inline_data with base64.
+IMAGE_B64=$(base64 < "$SCRIPT_DIR/test-image.png")
 curl -s "$BASE_URL/models/gemini-2.0-flash:generateContent?key=$API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -264,6 +264,231 @@ curl -s "$BASE_URL/models/gemini-2.0-flash:streamGenerateContent?alt=sse&key=$AP
       {"google_search": {}}
     ]
   }' | tee "$OUTDIR/google_search_streaming.txt"
+
+# --- 10. Multi-turn tool use sequence ---
+# Step 1: Initial request that triggers a tool call
+echo ""
+echo "==> Gemini: multi-turn step 1 - initial tool call"
+curl -s "$BASE_URL/models/gemini-2.0-flash:generateContent?key=$API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [{"text": "What is the weather in San Francisco?"}]
+      }
+    ],
+    "tools": [
+      {
+        "function_declarations": [
+          {
+            "name": "get_weather",
+            "description": "Get the current weather for a location",
+            "parameters": {
+              "type": "OBJECT",
+              "properties": {
+                "location": {"type": "STRING", "description": "City name"},
+                "unit": {"type": "STRING", "enum": ["celsius", "fahrenheit"]}
+              },
+              "required": ["location"]
+            }
+          }
+        ]
+      }
+    ]
+  }' | tee "$OUTDIR/multi_turn_step1.json" | python3 -m json.tool
+
+# Step 2: Feed back tool result and get final response
+echo ""
+echo "==> Gemini: multi-turn step 2 - tool result and final response"
+curl -s "$BASE_URL/models/gemini-2.0-flash:generateContent?key=$API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [{"text": "What is the weather in San Francisco?"}]
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "functionCall": {
+              "name": "get_weather",
+              "args": {"location": "San Francisco"}
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "parts": [
+          {
+            "functionResponse": {
+              "name": "get_weather",
+              "response": {"temperature": 62, "unit": "fahrenheit", "condition": "foggy", "humidity": 85}
+            }
+          }
+        ]
+      }
+    ],
+    "tools": [
+      {
+        "function_declarations": [
+          {
+            "name": "get_weather",
+            "description": "Get the current weather for a location",
+            "parameters": {
+              "type": "OBJECT",
+              "properties": {
+                "location": {"type": "STRING", "description": "City name"},
+                "unit": {"type": "STRING", "enum": ["celsius", "fahrenheit"]}
+              },
+              "required": ["location"]
+            }
+          }
+        ]
+      }
+    ]
+  }' | tee "$OUTDIR/multi_turn_step2.json" | python3 -m json.tool
+
+# --- 11. Parallel tool calls ---
+echo ""
+echo "==> Gemini: parallel tool calls"
+curl -s "$BASE_URL/models/gemini-2.0-flash:generateContent?key=$API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [{"text": "What is the weather in Paris and Tokyo?"}]
+      }
+    ],
+    "tools": [
+      {
+        "function_declarations": [
+          {
+            "name": "get_weather",
+            "description": "Get the current weather for a location",
+            "parameters": {
+              "type": "OBJECT",
+              "properties": {
+                "location": {"type": "STRING", "description": "City name"},
+                "unit": {"type": "STRING", "enum": ["celsius", "fahrenheit"]}
+              },
+              "required": ["location"]
+            }
+          }
+        ]
+      }
+    ]
+  }' | tee "$OUTDIR/parallel_tool_calls.json" | python3 -m json.tool
+
+echo ""
+echo "==> Gemini: parallel tool calls (streaming)"
+curl -s "$BASE_URL/models/gemini-2.0-flash:streamGenerateContent?alt=sse&key=$API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [{"text": "What is the weather in Paris and Tokyo?"}]
+      }
+    ],
+    "tools": [
+      {
+        "function_declarations": [
+          {
+            "name": "get_weather",
+            "description": "Get the current weather for a location",
+            "parameters": {
+              "type": "OBJECT",
+              "properties": {
+                "location": {"type": "STRING", "description": "City name"},
+                "unit": {"type": "STRING", "enum": ["celsius", "fahrenheit"]}
+              },
+              "required": ["location"]
+            }
+          }
+        ]
+      }
+    ]
+  }' | tee "$OUTDIR/parallel_tool_calls_streaming.txt"
+
+# --- 12. Reasoning + tool calls (thinking with tools) ---
+echo ""
+echo "==> Gemini: reasoning + tool calls (thinking with tools)"
+curl -s "$BASE_URL/models/gemini-2.5-flash:generateContent?key=$API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [{"text": "I need to plan an outfit. What is the weather in San Francisco right now?"}]
+      }
+    ],
+    "tools": [
+      {
+        "function_declarations": [
+          {
+            "name": "get_weather",
+            "description": "Get the current weather for a location",
+            "parameters": {
+              "type": "OBJECT",
+              "properties": {
+                "location": {"type": "STRING", "description": "City name"},
+                "unit": {"type": "STRING", "enum": ["celsius", "fahrenheit"]}
+              },
+              "required": ["location"]
+            }
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "thinking_config": {
+        "thinking_budget": 2048,
+        "include_thoughts": true
+      }
+    }
+  }' | tee "$OUTDIR/thinking_tool_call.json" | python3 -m json.tool
+
+echo ""
+echo "==> Gemini: reasoning + tool calls (thinking with tools, streaming)"
+curl -s "$BASE_URL/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=$API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [{"text": "I need to plan an outfit. What is the weather in San Francisco right now?"}]
+      }
+    ],
+    "tools": [
+      {
+        "function_declarations": [
+          {
+            "name": "get_weather",
+            "description": "Get the current weather for a location",
+            "parameters": {
+              "type": "OBJECT",
+              "properties": {
+                "location": {"type": "STRING", "description": "City name"},
+                "unit": {"type": "STRING", "enum": ["celsius", "fahrenheit"]}
+              },
+              "required": ["location"]
+            }
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "thinking_config": {
+        "thinking_budget": 2048,
+        "include_thoughts": true
+      }
+    }
+  }' | tee "$OUTDIR/thinking_tool_call_streaming.txt"
 
 echo ""
 echo "==> Done. Responses saved to $OUTDIR/"

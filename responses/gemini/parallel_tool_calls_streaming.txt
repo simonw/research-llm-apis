@@ -1,0 +1,2 @@
+data: {"candidates": [{"content": {"parts": [{"functionCall": {"name": "get_weather","args": {"location": "Paris"}}},{"functionCall": {"name": "get_weather","args": {"location": "Tokyo"}}}],"role": "model"},"finishReason": "STOP"}],"usageMetadata": {"promptTokenCount": 31,"candidatesTokenCount": 10,"totalTokenCount": 41,"promptTokensDetails": [{"modality": "TEXT","tokenCount": 31}],"candidatesTokensDetails": [{"modality": "TEXT","tokenCount": 10}]},"modelVersion": "gemini-2.0-flash","responseId": "73DRafjeMK-C1dkPrN_22A0"}
+

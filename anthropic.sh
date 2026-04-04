@@ -16,7 +16,8 @@ BASE_URL="https://api.anthropic.com/v1"
 OUTDIR="responses/anthropic"
 mkdir -p "$OUTDIR"
 
-IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+IMAGE_B64=$(base64 < "$SCRIPT_DIR/test-image.png")
 
 # --- 1. Non-streaming text completion ---
 echo "==> Anthropic: non-streaming text completion"
@@ -66,8 +67,9 @@ curl -s "$BASE_URL/messages" \
           {
             "type": "image",
             "source": {
-              "type": "url",
-              "url": "'"$IMAGE_URL"'"
+              "type": "base64",
+              "media_type": "image/png",
+              "data": "'"$IMAGE_B64"'"
             }
           }
         ]
@@ -209,6 +211,211 @@ curl -s "$BASE_URL/messages" \
       {"type": "web_search_20250305", "name": "web_search"}
     ]
   }' | tee "$OUTDIR/web_search_streaming.txt"
+
+# --- 10. Multi-turn tool use sequence ---
+# Step 1: Initial request that triggers a tool call
+echo ""
+echo "==> Anthropic: multi-turn step 1 - initial tool call"
+curl -s "$BASE_URL/messages" \
+  -H "x-api-key: $API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-5-20250929",
+    "max_tokens": 256,
+    "messages": [
+      {"role": "user", "content": "What is the weather in San Francisco?"}
+    ],
+    "tools": [
+      {
+        "name": "get_weather",
+        "description": "Get the current weather for a location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {"type": "string", "description": "City name"},
+            "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+          },
+          "required": ["location"]
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/multi_turn_step1.json" | python3 -m json.tool
+
+# Step 2: Feed back tool result and get final response
+echo ""
+echo "==> Anthropic: multi-turn step 2 - tool result and final response"
+curl -s "$BASE_URL/messages" \
+  -H "x-api-key: $API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-5-20250929",
+    "max_tokens": 256,
+    "messages": [
+      {"role": "user", "content": "What is the weather in San Francisco?"},
+      {
+        "role": "assistant",
+        "content": [
+          {"type": "text", "text": "I'\''ll check the weather in San Francisco for you."},
+          {
+            "type": "tool_use",
+            "id": "toolu_weather_sf",
+            "name": "get_weather",
+            "input": {"location": "San Francisco"}
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_weather_sf",
+            "content": "{\"temperature\": 62, \"unit\": \"fahrenheit\", \"condition\": \"foggy\", \"humidity\": 85}"
+          }
+        ]
+      }
+    ],
+    "tools": [
+      {
+        "name": "get_weather",
+        "description": "Get the current weather for a location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {"type": "string", "description": "City name"},
+            "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+          },
+          "required": ["location"]
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/multi_turn_step2.json" | python3 -m json.tool
+
+# --- 11. Parallel tool calls ---
+echo ""
+echo "==> Anthropic: parallel tool calls"
+curl -s "$BASE_URL/messages" \
+  -H "x-api-key: $API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-5-20250929",
+    "max_tokens": 512,
+    "messages": [
+      {"role": "user", "content": "What is the weather in Paris and Tokyo?"}
+    ],
+    "tools": [
+      {
+        "name": "get_weather",
+        "description": "Get the current weather for a location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {"type": "string", "description": "City name"},
+            "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+          },
+          "required": ["location"]
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/parallel_tool_calls.json" | python3 -m json.tool
+
+echo ""
+echo "==> Anthropic: parallel tool calls (streaming)"
+curl -s "$BASE_URL/messages" \
+  -H "x-api-key: $API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-5-20250929",
+    "max_tokens": 512,
+    "stream": true,
+    "messages": [
+      {"role": "user", "content": "What is the weather in Paris and Tokyo?"}
+    ],
+    "tools": [
+      {
+        "name": "get_weather",
+        "description": "Get the current weather for a location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {"type": "string", "description": "City name"},
+            "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+          },
+          "required": ["location"]
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/parallel_tool_calls_streaming.txt"
+
+# --- 12. Reasoning + tool calls (extended thinking with tools) ---
+echo ""
+echo "==> Anthropic: reasoning + tool calls (extended thinking)"
+curl -s "$BASE_URL/messages" \
+  -H "x-api-key: $API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-5-20250929",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "enabled",
+      "budget_tokens": 2048
+    },
+    "messages": [
+      {"role": "user", "content": "I need to plan an outfit. What is the weather in San Francisco right now?"}
+    ],
+    "tools": [
+      {
+        "name": "get_weather",
+        "description": "Get the current weather for a location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {"type": "string", "description": "City name"},
+            "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+          },
+          "required": ["location"]
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/thinking_tool_call.json" | python3 -m json.tool
+
+echo ""
+echo "==> Anthropic: reasoning + tool calls (extended thinking, streaming)"
+curl -s "$BASE_URL/messages" \
+  -H "x-api-key: $API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-5-20250929",
+    "max_tokens": 4096,
+    "stream": true,
+    "thinking": {
+      "type": "enabled",
+      "budget_tokens": 2048
+    },
+    "messages": [
+      {"role": "user", "content": "I need to plan an outfit. What is the weather in San Francisco right now?"}
+    ],
+    "tools": [
+      {
+        "name": "get_weather",
+        "description": "Get the current weather for a location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {"type": "string", "description": "City name"},
+            "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+          },
+          "required": ["location"]
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/thinking_tool_call_streaming.txt"
 
 echo ""
 echo "==> Done. Responses saved to $OUTDIR/"

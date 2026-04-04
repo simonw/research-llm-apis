@@ -1,38 +1,13 @@
-# api-examples-for-llms
+# research-llm-apis
 
-Curl-based examples and captured responses for the HTTP APIs of OpenAI, Anthropic, Gemini and Mistral. Designed as reference material for LLMs that need to understand how these APIs work.
+Curl-based examples and captured responses for the HTTP APIs of OpenAI, Anthropic, Gemini and Mistral. Intended as reference material for understanding how these APIs work.
 
 ## What's in here
 
-- **`openai.sh`**, **`anthropic.sh`**, **`gemini.sh`**, **`mistral.sh`** — bash scripts that exercise each provider's API using curl and save the raw responses.
+- **`openai.sh`**, **`anthropic.sh`**, **`gemini.sh`**, **`mistral.sh`** — bash scripts that exercise each provider's API using `curl` and save the raw responses.
 - **`responses/`** — captured JSON and streaming responses from each provider, covering text completion, streaming, vision, tool calling, reasoning/thinking, and web search.
-- **`notes-*.md`** — API reference notes for each provider: endpoints, authentication, request/response formats, and feature-specific details (tool calling, streaming, vision, thinking, etc.).
-- **`client-libraries/`** — Git submodules of the official Python client libraries for each provider ([openai-python](https://github.com/openai/openai-python), [anthropic-sdk-python](https://github.com/anthropics/anthropic-sdk-python), [python-genai](https://github.com/googleapis/python-genai), [client-python](https://github.com/mistralai/client-python)).
-
-### Features covered per provider
-
-| Feature | OpenAI | Anthropic | Gemini | Mistral |
-|---|---|---|---|---|
-| Text completion | yes | yes | yes | yes |
-| Streaming | yes | yes | yes | yes |
-| Vision | yes | yes | yes | yes |
-| Tool calling | yes | yes | yes | yes |
-| Reasoning/thinking | yes | yes | yes | — |
-| Web/Google search | yes | yes | yes | — |
-
-## Setup
-
-Clone with submodules to pull down the client library source code:
-
-```bash
-git clone --recurse-submodules <url>
-```
-
-Or if you've already cloned the repo:
-
-```bash
-git submodule update --init
-```
+- **`notes-*.md`** — LLM-generated reference notes for each provider: endpoints, authentication, request/response formats, and feature-specific details (tool calling, streaming, vision, thinking, etc.).
+- **`client-libraries/`** — Git submodules of the official Python client libraries for each provider ([openai-python](https://github.com/openai/openai-python), [anthropic-sdk-python](https://github.com/anthropics/anthropic-sdk-python), [python-genai](https://github.com/googleapis/python-genai), [client-python](https://github.com/mistralai/client-python)) - these were used by Claude Code to help build the `curl` scripts and API notes.
 
 ## Running the scripts
 
@@ -57,3 +32,17 @@ bash mistral.sh
 ```
 
 If no environment variable is set, the scripts will fall back to [`llm keys get`](https://llm.datasette.io/en/stable/setup.html#saving-and-using-api-keys) to retrieve the key. If neither is available, the script will exit with an error.
+
+## Cloning the client libraries
+
+Clone with submodules to pull down the client library source code:
+
+```bash
+git clone --recurse-submodules <url>
+```
+
+Or if you've already cloned the repo:
+
+```bash
+git submodule update --init
+```

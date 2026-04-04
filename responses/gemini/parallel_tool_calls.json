@@ -7,7 +7,15 @@
             "functionCall": {
               "name": "get_weather",
               "args": {
-                "location": "San Francisco"
+                "location": "Paris"
+              }
+            }
+          },
+          {
+            "functionCall": {
+              "name": "get_weather",
+              "args": {
+                "location": "Tokyo"
               }
             }
           }
@@ -15,26 +23,26 @@
         "role": "model"
       },
       "finishReason": "STOP",
-      "avgLogprobs": -0.004124850345154603
+      "avgLogprobs": -8.02552531240508e-06
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 30,
-    "candidatesTokenCount": 6,
-    "totalTokenCount": 36,
+    "promptTokenCount": 31,
+    "candidatesTokenCount": 10,
+    "totalTokenCount": 41,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30
+        "tokenCount": 31
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6
+        "tokenCount": 10
       }
     ]
   },
   "modelVersion": "gemini-2.0-flash",
-  "responseId": "23DRaeOhLYHO_uMPrs3_2Ak"
+  "responseId": "73DRaceXCIeZ_uMPgpfLoQg"
 }

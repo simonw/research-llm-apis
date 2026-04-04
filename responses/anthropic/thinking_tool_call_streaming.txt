@@ -1,0 +1,60 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-sonnet-4-5-20250929","id":"msg_017wJ9FXXsh2GFtqYx8ZaLfx","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":632,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":3,"service_tier":"standard","inference_geo":"not_available"}}             }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}      }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"The user wants"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" to know the current weather in San Francisco to plan an outfit. I have access to the get_weather function which can provide this"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" information.\n\nLet me check the required parameters:\n- location: \"San Francisco\" (provided)\n- unit: optional"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":", can be either \"celsius\" or \"fahrenheit\"\n\nSince the unit is optional and not specified by the user, I can"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" make the call without it, or choose a reasonable default. I'll call the function with just the location."}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"signature_delta","signature":"EpUFCmQIDBgCKkBmRC/+joUMn1o7BDLG3njtBV/kfWC4+LMaST3tDbu92Mj2qhsuqSvrP5bOa2qTldXLRad1SH1tLkcqcoM1Z3OXMhpjbGF1ZGUtc29ubmV0LTQtNS0yMDI1MDkyOTgAEgxjU+wGDvd46XNLy4UaDIk468Mh3W4r8SnUnSIwlQLtaJY1gPd+mjFr9rbcskGcdMJq2BLRpIl9xElnMkfIHCQeBYAHZyHlkG5DogNLKt4Df8eEYy2MeApv5jiWoB9KOoDrW2ACfF7Wkr4Jf18Z/4vyT0wHag5NL+btiJBFabIPCPBE0UxfPpHZmNcDqhsyfmq5svu57/DFDjw0ty/p/7zhF9bWKjYR23UpVgw/AlLu6w/Yg4OZ93IS/TMZO6bD/qDwoHrlpun/GTCo9AUzg/DbQ6V+H9zK0uc/3eV8lP9OLwAnW/ylRY/1bDo43qC10qF1VPTAuQqjQ25rOMP+W+VwgnIggKy9bJeov/3A37b9rbeiEyE7YH++09m8nVluiFZWDmmhsDpkHWm1yPesgPGgN4UnkshW8eURVVkn79Tw5cDZ9DV3YnmKx4OgNf7iw2lhBxAYB858S7u796S5wSnh7Bl9efyhFDa63i9odBO/iuhhOIXuIA98EOPFWxlNXy4//3jq5KjOwkl/Cs4zuRI7ByVCuojC81iwVGyTfsryJc07IBbxx8n3NZf4kcense2EpaVHOyzxoKIN9YVbOQ1Z+phhPkj0RvnPrIUHMG64JmeLXdBWvEu1hNnWNDaZlbvaEVHaJDhe4dZuD0v3ey3oUboo5JNhwjDq7vFBpcWq8ydq8Iw/WvM6g487AdsOfngShIOQjAgt9aiaUfvcpfxw+7C9vmV5siRwopYHqBgB"} }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0              }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"tool_use","id":"toolu_01F6yEHcqrAieYj83853yQUd","name":"get_weather","input":{},"caller":{"type":"direct"}}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":""}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"{\"lo"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"cation\""}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":": \"San F"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"ranci"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"sco\"}"}           }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1            }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"tool_use","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":632,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":166}       }
+
+event: message_stop
+data: {"type":"message_stop"     }
+

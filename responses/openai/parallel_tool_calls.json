@@ -1,7 +1,7 @@
 {
-  "id": "chatcmpl-DR1fuBcp0Faz8q3WuIv7DEyN79tnm",
+  "id": "chatcmpl-DR1gFnbQ7cNdJjF4l2lQmVrEjRXvA",
   "object": "chat.completion",
-  "created": 1775333666,
+  "created": 1775333687,
   "model": "gpt-4.1-mini-2025-04-14",
   "choices": [
     {
@@ -11,11 +11,19 @@
         "content": null,
         "tool_calls": [
           {
-            "id": "call_QcVLaNSElzFZjSKYYMuoZm6I",
+            "id": "call_ghmWMYgWQXmHG3USPASans1K",
             "type": "function",
             "function": {
               "name": "get_weather",
-              "arguments": "{\"location\":\"San Francisco\",\"unit\":\"celsius\"}"
+              "arguments": "{\"location\": \"Paris\", \"unit\": \"celsius\"}"
+            }
+          },
+          {
+            "id": "call_TMG1ZjjF2n0Mt4zuzBOv19Zm",
+            "type": "function",
+            "function": {
+              "name": "get_weather",
+              "arguments": "{\"location\": \"Tokyo\", \"unit\": \"celsius\"}"
             }
           }
         ],
@@ -27,9 +35,9 @@
     }
   ],
   "usage": {
-    "prompt_tokens": 68,
-    "completion_tokens": 20,
-    "total_tokens": 88,
+    "prompt_tokens": 69,
+    "completion_tokens": 54,
+    "total_tokens": 123,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0

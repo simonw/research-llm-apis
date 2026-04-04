@@ -16,10 +16,8 @@ BASE_URL="https://api.openai.com/v1"
 OUTDIR="responses/openai"
 mkdir -p "$OUTDIR"
 
-IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"
-
-# Download image and base64 encode it for vision requests
-IMAGE_B64=$(curl -s "$IMAGE_URL" | base64)
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+IMAGE_B64=$(base64 < "$SCRIPT_DIR/test-image.png")
 IMAGE_DATA_URI="data:image/png;base64,$IMAGE_B64"
 
 # --- 1. Non-streaming text completion ---
@@ -185,6 +183,207 @@ curl -s "$BASE_URL/responses" \
       {"type": "web_search_preview"}
     ]
   }' | tee "$OUTDIR/web_search_streaming.txt"
+
+# --- 10. Multi-turn tool use sequence ---
+# Step 1: Initial request that triggers a tool call
+echo ""
+echo "==> OpenAI: multi-turn step 1 - initial tool call"
+curl -s "$BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4.1-mini",
+    "messages": [
+      {"role": "user", "content": "What is the weather in San Francisco?"}
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get the current weather for a location",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"},
+              "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+            },
+            "required": ["location"]
+          }
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/multi_turn_step1.json" | python3 -m json.tool
+
+# Step 2: Feed back tool result and get final response
+echo ""
+echo "==> OpenAI: multi-turn step 2 - tool result and final response"
+curl -s "$BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4.1-mini",
+    "messages": [
+      {"role": "user", "content": "What is the weather in San Francisco?"},
+      {
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_weather_sf",
+            "type": "function",
+            "function": {
+              "name": "get_weather",
+              "arguments": "{\"location\": \"San Francisco\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_weather_sf",
+        "content": "{\"temperature\": 62, \"unit\": \"fahrenheit\", \"condition\": \"foggy\", \"humidity\": 85}"
+      }
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get the current weather for a location",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"},
+              "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+            },
+            "required": ["location"]
+          }
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/multi_turn_step2.json" | python3 -m json.tool
+
+# --- 11. Parallel tool calls ---
+echo ""
+echo "==> OpenAI: parallel tool calls"
+curl -s "$BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4.1-mini",
+    "messages": [
+      {"role": "user", "content": "What is the weather in Paris and Tokyo?"}
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get the current weather for a location",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"},
+              "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+            },
+            "required": ["location"]
+          }
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/parallel_tool_calls.json" | python3 -m json.tool
+
+echo ""
+echo "==> OpenAI: parallel tool calls (streaming)"
+curl -s "$BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4.1-mini",
+    "stream": true,
+    "messages": [
+      {"role": "user", "content": "What is the weather in Paris and Tokyo?"}
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get the current weather for a location",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"},
+              "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+            },
+            "required": ["location"]
+          }
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/parallel_tool_calls_streaming.txt"
+
+# --- 12. Reasoning + tool calls (o3-mini with tools) ---
+echo ""
+echo "==> OpenAI: reasoning + tool calls (o3-mini)"
+curl -s "$BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "o3-mini",
+    "messages": [
+      {"role": "user", "content": "I need to plan an outfit. What is the weather in San Francisco right now?"}
+    ],
+    "reasoning_effort": "low",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get the current weather for a location",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"},
+              "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+            },
+            "required": ["location"]
+          }
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/reasoning_tool_call.json" | python3 -m json.tool
+
+echo ""
+echo "==> OpenAI: reasoning + tool calls (o3-mini, streaming)"
+curl -s "$BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "o3-mini",
+    "stream": true,
+    "messages": [
+      {"role": "user", "content": "I need to plan an outfit. What is the weather in San Francisco right now?"}
+    ],
+    "reasoning_effort": "low",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get the current weather for a location",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {"type": "string", "description": "City name"},
+              "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+            },
+            "required": ["location"]
+          }
+        }
+      }
+    ]
+  }' | tee "$OUTDIR/reasoning_tool_call_streaming.txt"
 
 echo ""
 echo "==> Done. Responses saved to $OUTDIR/"

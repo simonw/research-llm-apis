@@ -1,0 +1,41 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Okay, here's my thought process on this request:\n\n**Analyzing the User's Weather Query**\n\nAlright, a straightforward weather request – they want the forecast for San Francisco. Simple enough. The key here is to leverage the `get_weather` tool. I need to make sure I'm precise with the parameters. The essential bit is the `location` parameter, which definitely needs to be set to \"San Francisco.\" Now, the request doesn't mention a specific unit (like Celsius or Fahrenheit), so I'll assume they want the default. No need to explicitly set the `unit` parameter unless they specifically ask for something different. I'll execute the tool with the correct parameters and then formulate a clear and concise response to the user, providing the weather information.\n",
+            "thought": true
+          },
+          {
+            "functionCall": {
+              "name": "get_weather",
+              "args": {
+                "location": "San Francisco"
+              }
+            },
+            "thoughtSignature": "CvcCAb4+9vv6q6I3zUU3peNZkhLtUTcTSkh/zNi3YmoaPi+DEm1KsAXOzvknqXeS9HpFiBbAYt73Ypgf6Fk7NUmcY+/N2uTaL6Yo0fcjGaDTULbLGDIoUOjfNj0jXznbizhkKT6Ksqoj2guDX2HkaS6GD7if+HWlQ/B2UrrefixsmBLv5NsFFX5zSCC19X+d6Wp7uVeS/rX8rQPWvCk0D6k9FL5rmV0pBNCbjQ9ZUnHzeMTLQ6ZCERdgvkYsbw44+abFWi2tu9dHxmy2ODgrnFdyN8Z3gK7EyRTFrz1z7y4sgcZqVZp7Jcu9/PiPK2XcgOddaKXX6KZiIrhAP4iNK7M3UrGENCxqgFYXPFY6MzR/HFQ/UJJYQG3EU9NoOErJqxEKjFSZ6Xs0FvbDn0ib4uNufrT/W9etLx/So4dMZfzv+hTnSZXdgjU9u2NcHRCTaCWZ+Djmxt2cr0H0r5bTjdlPw4RuDnaPzn9x8CtE1L57khcWDIW8ZnCA"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0,
+      "finishMessage": "Model generated function call(s)."
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 81,
+    "candidatesTokenCount": 16,
+    "totalTokenCount": 174,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81
+      }
+    ],
+    "thoughtsTokenCount": 77
+  },
+  "modelVersion": "gemini-2.5-flash",
+  "responseId": "8HDRaeeNHNm9_uMPioyiuAI"
+}

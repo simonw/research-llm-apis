@@ -4,7 +4,7 @@
       "content": {
         "parts": [
           {
-            "text": "There are **3** \"r\" letters in the word \"strawberry\"."
+            "text": "Let's count them:\n\nst**r**awbe**rr**y\n\nThere are **3** 'r' letters in the word \"strawberry\"."
           }
         ],
         "role": "model"
@@ -15,16 +15,16 @@
   ],
   "usageMetadata": {
     "promptTokenCount": 11,
-    "candidatesTokenCount": 15,
-    "totalTokenCount": 212,
+    "candidatesTokenCount": 33,
+    "totalTokenCount": 228,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
         "tokenCount": 11
       }
     ],
-    "thoughtsTokenCount": 186
+    "thoughtsTokenCount": 184
   },
   "modelVersion": "gemini-2.5-flash",
-  "responseId": "fkbRaaPtDq2N_PUPju6OgQM"
+  "responseId": "3XDRaa3UEtC6_uMP556VsAk"
 }

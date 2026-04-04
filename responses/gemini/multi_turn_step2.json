@@ -4,37 +4,32 @@
       "content": {
         "parts": [
           {
-            "functionCall": {
-              "name": "get_weather",
-              "args": {
-                "location": "San Francisco"
-              }
-            }
+            "text": "The weather in San Francisco is foggy with a temperature of 62 degrees Fahrenheit and 85% humidity."
           }
         ],
         "role": "model"
       },
       "finishReason": "STOP",
-      "avgLogprobs": -0.004124850345154603
+      "avgLogprobs": -0.00040826537524876386
     }
   ],
   "usageMetadata": {
-    "promptTokenCount": 30,
-    "candidatesTokenCount": 6,
-    "totalTokenCount": 36,
+    "promptTokenCount": 49,
+    "candidatesTokenCount": 23,
+    "totalTokenCount": 72,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30
+        "tokenCount": 49
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6
+        "tokenCount": 23
       }
     ]
   },
   "modelVersion": "gemini-2.0-flash",
-  "responseId": "23DRaeOhLYHO_uMPrs3_2Ak"
+  "responseId": "7nDRaZanF7Sl1MkPs6Cz2QQ"
 }

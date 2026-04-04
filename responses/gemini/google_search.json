@@ -4,7 +4,7 @@
       "content": {
         "parts": [
           {
-            "text": "Here's the latest news about Google:\n\n**AI and New Products:**\n\n*   **Gemma 4:** Google has unveiled Gemma 4, expanding its lineup of lightweight open models for developers. The Gemma 4 model offers capabilities such as advanced reasoning, agentic workflows, and coding, and supports over 140 languages.\n*   **Google Vids:** Google's new Vids update makes AI video creation simple and free, allowing users to generate short video clips from text prompts. You can create, edit, and share videos at no cost in Google Vids.\n*   **AI-Powered Gmail Inbox:** Google has launched a new AI-powered Gmail inbox experience for premium users, currently in beta in the US. This feature, built on Gemini capabilities, can filter through junk, summarize an inbox, and even help users write emails.\n*   **Lyria 3 Pro:** Google Labs is offering Lyria 3 Pro to create longer tracks in more Google products.\n\n**Google Business and Legal Matters:**\n\n*   **Turkey Investigation:** Turkey has launched an investigation into Google over advertising and billing practices.\n*   **Indonesia Summons:** Indonesia has issued fresh summons for Google and Meta over a teen social media ban. The tech giants allegedly ignored a new ban on social media for users under 16.\n*   **Privacy Lawsuit:** Google will pay $68 million to settle allegations it eavesdropped on users. A class-action lawsuit alleged that Google's voice assistant illegally recorded and shared private conversations with advertisers.\n*   **App Store Commissions:** Google settled with Epic Games with an offer to lower its app store commissions.\n\n**Google Personnel:**\n\n*   **Sundar Pichai to speak at Stanford:** Google and Alphabet CEO Sundar Pichai is \"returning\" to Stanford University after 31 years to deliver the 2026 commencement address.\n*   **Employee Leaves Google:** A Bengaluru tech professional, Harshit Sharma, has quit his Google job for a year-long 'experiment' to explore life and passions.\n\n**Other News:**\n\n*   **Acquisition:** Google has announced its biggest acquisition in its 28-year history, acquiring a business making security tools to protect information stored.\n*   **London HQ:** Google is starting its long-awaited move into Platform 37 London HQ this summer and has christened its new London headquarters 'Platform 37'.\n*   **Google Maps Overhaul:** Google Maps is set for a huge overhaul.\n*   **AI for Health:** Google is using AI to improve health for everyone.\n*   **Protecting Forests:** Google Earth is creating a new satellite imagery map to help protect Brazil's forests.\n"
+            "text": "Here's the latest news about Google:\n\n**AI and New Technologies:**\n\n*   **Gemma 4:** Google has launched Gemma 4, the latest in its series of lightweight open models for developers, designed to bring advanced AI capabilities directly to devices. Gemma 4 supports over 140 languages and offers advanced reasoning and coding capabilities.\n*   **Google Vids:** Google is simplifying video creation with new AI tools in Google Vids, allowing users to generate short video clips from text prompts. Users can create, edit, and share videos at no cost.\n*   **Gmail AI Features:** Google has introduced new AI features to Gmail, powered by Gemini. These include filtering junk mail, summarizing inboxes, and assisting users in writing emails.\n*   **Lyria 3 Pro:** Google Labs is enabling longer track creation in more Google products with Lyria 3 Pro.\n\n**Business and Legal Matters:**\n\n*   **Advertising Investigation:** Turkey has launched an investigation into Google over its advertising and billing practices.\n*   **Social Media Ban:** Indonesia has issued fresh summons for Google and Meta for allegedly ignoring a ban on social media for users under 16.\n*   **Epic Games Settlement:** Google has settled with Epic Games, offering to lower its app store commissions.\n*   **Acquisition:** Google has made its biggest acquisition in its 28-year history, acquiring a business that makes security tools to protect stored information.\n\n**Other News:**\n\n*   **Sundar Pichai to Speak at Stanford:** Google and Alphabet CEO Sundar Pichai will deliver the 2026 commencement address at Stanford University.\n*   **Gmail Address Changes:** Google is now allowing users to change their Gmail addresses and Google Account usernames.\n*   **London HQ:** Google is set to move into its new London headquarters, called 'Platform 37,' this summer."
           }
         ],
         "role": "model"
@@ -12,36 +12,36 @@
       "finishReason": "STOP",
       "groundingMetadata": {
         "searchEntryPoint": {
-          "renderedContent": "\u003cstyle\u003e\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n\u003c/style\u003e\n\u003cdiv class=\"container\"\u003e\n  \u003cdiv class=\"headline\"\u003e\n    \u003csvg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"\u003e\n      \u003cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/\u003e\n      \u003cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/\u003e\n      \u003cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/\u003e\n      \u003cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/\u003e\n    \u003c/svg\u003e\n    \u003csvg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\"\u003e\n      \u003ccircle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/\u003e\n      \u003cpath d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/\u003e\n      \u003cpath d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/\u003e\n      \u003cpath d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/\u003e\n      \u003cpath d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/\u003e\n    \u003c/svg\u003e\n    \u003cdiv class=\"gradient-container\"\u003e\u003cdiv class=\"gradient\"\u003e\u003c/div\u003e\u003c/div\u003e\n  \u003c/div\u003e\n  \u003cdiv class=\"carousel\"\u003e\n    \u003ca class=\"chip\" href=\"https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG64lpMLx2baantu_qZ9tV3CZukwf6Ob-aon617Km_uMn_bZ6Xie4CB8J3hCIvETLGlbksQ7hO3D3wsdjFr7b1xUruE94NJIVAiWG3mjQ_V7aAGRJj7s8X9ep-_Dy4cKXXMCqM8KM1RX7AXilZAx0ebmaHgMVIxdJPsNVCBIPiG5xHhqMQamj-Jv9fsVNtR1AkIHRJApRlI6GRdCA==\"\u003elatest news about Google\u003c/a\u003e\n  \u003c/div\u003e\n\u003c/div\u003e\n"
+          "renderedContent": "\u003cstyle\u003e\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n\u003c/style\u003e\n\u003cdiv class=\"container\"\u003e\n  \u003cdiv class=\"headline\"\u003e\n    \u003csvg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"\u003e\n      \u003cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/\u003e\n      \u003cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/\u003e\n      \u003cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/\u003e\n      \u003cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/\u003e\n    \u003c/svg\u003e\n    \u003csvg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\"\u003e\n      \u003ccircle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/\u003e\n      \u003cpath d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/\u003e\n      \u003cpath d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/\u003e\n      \u003cpath d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/\u003e\n      \u003cpath d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/\u003e\n    \u003c/svg\u003e\n    \u003cdiv class=\"gradient-container\"\u003e\u003cdiv class=\"gradient\"\u003e\u003c/div\u003e\u003c/div\u003e\n  \u003c/div\u003e\n  \u003cdiv class=\"carousel\"\u003e\n    \u003ca class=\"chip\" href=\"https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH3HsnFvHjoq69VonrGHz_rSxWzbJCkQ4qluUVR9ekQJLADixrw-U3FBxuLngRjRVunqDZzqDe64wsuYz1dYdcAIQ3pOmnq82eXLECEgcfr3CGnPz4KCSGB0wETG80xALeujjx2xU6DBEy45TQ7fjdHXq9H7UfP0FS1eEpQoXbC3xis4k26oqRHBr7uzBD9vGNpokHZNBqcjFk9\"\u003elatest news about Google\u003c/a\u003e\n  \u003c/div\u003e\n\u003c/div\u003e\n"
         },
         "groundingChunks": [
           {
             "web": {
-              "uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFu11RpZzfS9xYz_dhOifbXw3EKWTwPvLU7CxeXpyfYesFOKz6uGae05Q78s9ODgU7wFSf_GpSvRPySWr4emiKm9EyOhEj3Kqci4eznDoszLKLsgKAVRFxybl87vqvhyt83ERo4R-42U_gkDr0=",
+              "uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFz07WwTzuLi3gbH2Z1FpBS8pmLvhM-cYtsF7q2-R-_TtL6PdWgNmWZRiI9zVZ3dw1WTrsyyDEG47NVohzAp8x9_08p5Q_5Ek6G5rmGLPFbAtFcxq9P7YnG_LTgYeU1PAr4Nfh76z_-uIVliQ==",
               "title": "indiatimes.com"
             }
           },
           {
             "web": {
-              "uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEesixWyjWQRX8bRb-4aKhmwu_Nsak56SzYiZmRUZQ2sfpQn8S3aIyMkrrtxrc9EODYNgN3-rUw6KwJz045dyrC-v9l7K1WenUkACtfwVc3utJcsaQ-iCfe-H6WsLPhZXJzNriFihFcAfHEC8A=",
+              "uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFMJ_tfaHNq94bQFo_U6TwHVn3CyliA2ZjpnvGyjpeA8Wqf0Zi94ME1RPH-HX0Jh88F-55HQKQxOrEFIgejwnIXFFWm7S7_v0rEwmzFRfbWMdjNBQfvYcUMx-GIkFatZAN3gtLT0rMoyLh1-Q==",
               "title": "blog.google"
             }
           },
           {
             "web": {
-              "uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGN239Qxger5eOnAI2_E5EH-26vPvjV8WawIu-CXFjAsnGRysspPDIki4ejD1Ve37bc_rwY0N43hPUvFy8OGmb9WNMSj9Nwm2yhP6FiAY2mhfRd1fdimJJzXuT2eHkR",
+              "uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHEOyMenx1Qxsj_BgV8lRdrOGYofzGq55eEeLXDxlUlIMjQB23kwt1sDa568VPBVTnD9qrIK9dqHMA2EVRfTcdft8KryR7qWF-AvYDkv2Nsd3S17ieNi8qDD8oLWWs=",
               "title": "cbsnews.com"
             }
           },
           {
             "web": {
-              "uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHdbxODGWVnm5m4hsIiFL6BLlRD7GExTxDE4WqCZFslj6XQFMyi9V5ml--tCjl4sYDTXbmHlMsSLwn_Br96__VJIDejCDflgyIPAR-OB48P-2kuWDvO5zk0wcPxly3O7ZxsYPCBPQ==",
+              "uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-hrEy6T3tnrj1Yqe5PVkeheV1nEtV4jrKMPkVokGY7ekai0M8k0Fm-YEAmMkm9Rp8zm-8ret_UtKgY4zQjsQrdpFXVQFIszllAZj1g7hGXTAnzO_-lRFbJmGuCxp7esPHmKvY",
               "title": "independent.co.uk"
             }
           },
           {
             "web": {
-              "uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF7oLbE8plK_Ns99ecSkck0X8xJh4MR2-hop-vHE6p8sHCIK4tQ7-gD9vwhTx6sZzcZUh8Mg0mHwfkMnt7fMTDee_OQDAAm-1ovKzLnr9hk5FkSacHey0manvGL8voPd_8mp7VmxSZZ",
+              "uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGhlQP_guD-twlxCxzHfinBKxQXg7SO96oTHBDemSstumC1D9ZpvIDYBDy38KgcI105HH85IzYmHyjQYtIHFEb5xWmgRdK9AQFtiXIIwIcdWjFwHxWPxNgpr2sCS8DkJAPvIk3pFCg=",
               "title": "the-independent.com"
             }
           }
@@ -49,240 +49,173 @@
         "groundingSupports": [
           {
             "segment": {
-              "startIndex": 64,
-              "endIndex": 172,
-              "text": "*   **Gemma 4:** Google has unveiled Gemma 4, expanding its lineup of lightweight open models for developers"
+              "startIndex": 68,
+              "endIndex": 244,
+              "text": "*   **Gemma 4:** Google has launched Gemma 4, the latest in its series of lightweight open models for developers, designed to bring advanced AI capabilities directly to devices"
             },
             "groundingChunkIndices": [
               0
             ],
             "confidenceScores": [
-              0.9631665
+              0.88732105
             ]
           },
           {
             "segment": {
-              "startIndex": 174,
-              "endIndex": 302,
-              "text": "The Gemma 4 model offers capabilities such as advanced reasoning, agentic workflows, and coding, and supports over 140 languages"
+              "startIndex": 246,
+              "endIndex": 335,
+              "text": "Gemma 4 supports over 140 languages and offers advanced reasoning and coding capabilities"
             },
             "groundingChunkIndices": [
               0
             ],
             "confidenceScores": [
-              0.9755937
+              0.95509666
             ]
           },
           {
             "segment": {
-              "startIndex": 304,
-              "endIndex": 453,
-              "text": "*   **Google Vids:** Google's new Vids update makes AI video creation simple and free, allowing users to generate short video clips from text prompts"
+              "startIndex": 337,
+              "endIndex": 491,
+              "text": "*   **Google Vids:** Google is simplifying video creation with new AI tools in Google Vids, allowing users to generate short video clips from text prompts"
             },
             "groundingChunkIndices": [
               0
             ],
             "confidenceScores": [
-              0.021799793
+              0.9388293
             ]
           },
           {
             "segment": {
-              "startIndex": 455,
-              "endIndex": 519,
-              "text": "You can create, edit, and share videos at no cost in Google Vids"
+              "startIndex": 493,
+              "endIndex": 544,
+              "text": "Users can create, edit, and share videos at no cost"
             },
             "groundingChunkIndices": [
               1
             ],
             "confidenceScores": [
-              0.9091953
+              0.79162264
             ]
           },
           {
             "segment": {
-              "startIndex": 661,
-              "endIndex": 782,
-              "text": "This feature, built on Gemini capabilities, can filter through junk, summarize an inbox, and even help users write emails"
-            },
-            "groundingChunkIndices": [
-              2,
-              0
-            ],
-            "confidenceScores": [
-              0.8756921,
-              0.0046156608
-            ]
-          },
-          {
-            "segment": {
-              "startIndex": 784,
-              "endIndex": 888,
-              "text": "*   **Lyria 3 Pro:** Google Labs is offering Lyria 3 Pro to create longer tracks in more Google products"
-            },
-            "groundingChunkIndices": [
-              1
-            ],
-            "confidenceScores": [
-              0.93961656
-            ]
-          },
-          {
-            "segment": {
-              "startIndex": 931,
-              "endIndex": 1048,
-              "text": "*   **Turkey Investigation:** Turkey has launched an investigation into Google over advertising and billing practices"
-            },
-            "groundingChunkIndices": [
-              0
-            ],
-            "confidenceScores": [
-              0.95825136
-            ]
-          },
-          {
-            "segment": {
-              "startIndex": 1050,
-              "endIndex": 1160,
-              "text": "*   **Indonesia Summons:** Indonesia has issued fresh summons for Google and Meta over a teen social media ban"
-            },
-            "groundingChunkIndices": [
-              0
-            ],
-            "confidenceScores": [
-              0.9556212
-            ]
-          },
-          {
-            "segment": {
-              "startIndex": 1162,
-              "endIndex": 1240,
-              "text": "The tech giants allegedly ignored a new ban on social media for users under 16"
-            },
-            "groundingChunkIndices": [
-              0
-            ],
-            "confidenceScores": [
-              0.010847538
-            ]
-          },
-          {
-            "segment": {
-              "startIndex": 1343,
-              "endIndex": 1472,
-              "text": "A class-action lawsuit alleged that Google's voice assistant illegally recorded and shared private conversations with advertisers"
+              "startIndex": 640,
+              "endIndex": 733,
+              "text": "These include filtering junk mail, summarizing inboxes, and assisting users in writing emails"
             },
             "groundingChunkIndices": [
               2
             ],
             "confidenceScores": [
-              0.9271633
+              0.90281886
             ]
           },
           {
             "segment": {
-              "startIndex": 1474,
-              "endIndex": 1584,
-              "text": "*   **App Store Commissions:** Google settled with Epic Games with an offer to lower its app store commissions"
+              "startIndex": 735,
+              "endIndex": 842,
+              "text": "*   **Lyria 3 Pro:** Google Labs is enabling longer track creation in more Google products with Lyria 3 Pro"
+            },
+            "groundingChunkIndices": [
+              1
+            ],
+            "confidenceScores": [
+              0.9372908
+            ]
+          },
+          {
+            "segment": {
+              "startIndex": 878,
+              "endIndex": 1004,
+              "text": "*   **Advertising Investigation:** Turkey has launched an investigation into Google over its advertising and billing practices"
+            },
+            "groundingChunkIndices": [
+              0
+            ],
+            "confidenceScores": [
+              0.927226
+            ]
+          },
+          {
+            "segment": {
+              "startIndex": 1006,
+              "endIndex": 1150,
+              "text": "*   **Social Media Ban:** Indonesia has issued fresh summons for Google and Meta for allegedly ignoring a ban on social media for users under 16"
+            },
+            "groundingChunkIndices": [
+              0
+            ],
+            "confidenceScores": [
+              0.04541929
+            ]
+          },
+          {
+            "segment": {
+              "startIndex": 1152,
+              "endIndex": 1262,
+              "text": "*   **Epic Games Settlement:** Google has settled with Epic Games, offering to lower its app store commissions"
             },
             "groundingChunkIndices": [
               3
             ],
             "confidenceScores": [
-              0.004030353
+              0.0037343856
             ]
           },
           {
             "segment": {
-              "startIndex": 1610,
-              "endIndex": 1785,
-              "text": "*   **Sundar Pichai to speak at Stanford:** Google and Alphabet CEO Sundar Pichai is \"returning\" to Stanford University after 31 years to deliver the 2026 commencement address"
-            },
-            "groundingChunkIndices": [
-              0
-            ],
-            "confidenceScores": [
-              0.897536
-            ]
-          },
-          {
-            "segment": {
-              "startIndex": 1787,
-              "endIndex": 1947,
-              "text": "*   **Employee Leaves Google:** A Bengaluru tech professional, Harshit Sharma, has quit his Google job for a year-long 'experiment' to explore life and passions"
-            },
-            "groundingChunkIndices": [
-              0
-            ],
-            "confidenceScores": [
-              0.005279533
-            ]
-          },
-          {
-            "segment": {
-              "startIndex": 1967,
-              "endIndex": 2129,
-              "text": "*   **Acquisition:** Google has announced its biggest acquisition in its 28-year history, acquiring a business making security tools to protect information stored"
+              "startIndex": 1264,
+              "endIndex": 1425,
+              "text": "*   **Acquisition:** Google has made its biggest acquisition in its 28-year history, acquiring a business that makes security tools to protect stored information"
             },
             "groundingChunkIndices": [
               4,
               3
             ],
             "confidenceScores": [
-              0.0077797635,
-              0.17301479
+              0.007374934,
+              0.14043772
             ]
           },
           {
             "segment": {
-              "startIndex": 2131,
-              "endIndex": 2290,
-              "text": "*   **London HQ:** Google is starting its long-awaited move into Platform 37 London HQ this summer and has christened its new London headquarters 'Platform 37'"
+              "startIndex": 1445,
+              "endIndex": 1592,
+              "text": "*   **Sundar Pichai to Speak at Stanford:** Google and Alphabet CEO Sundar Pichai will deliver the 2026 commencement address at Stanford University"
+            },
+            "groundingChunkIndices": [
+              0
+            ],
+            "confidenceScores": [
+              0.8810845
+            ]
+          },
+          {
+            "segment": {
+              "startIndex": 1594,
+              "endIndex": 1714,
+              "text": "*   **Gmail Address Changes:** Google is now allowing users to change their Gmail addresses and Google Account usernames"
+            },
+            "groundingChunkIndices": [
+              0
+            ],
+            "confidenceScores": [
+              0.006803451
+            ]
+          },
+          {
+            "segment": {
+              "startIndex": 1716,
+              "endIndex": 1824,
+              "text": "*   **London HQ:** Google is set to move into its new London headquarters, called 'Platform 37,' this summer"
             },
             "groundingChunkIndices": [
               3
             ],
             "confidenceScores": [
-              0.8977561
-            ]
-          },
-          {
-            "segment": {
-              "startIndex": 2292,
-              "endIndex": 2360,
-              "text": "*   **Google Maps Overhaul:** Google Maps is set for a huge overhaul"
-            },
-            "groundingChunkIndices": [
-              3
-            ],
-            "confidenceScores": [
-              0.7754609
-            ]
-          },
-          {
-            "segment": {
-              "startIndex": 2362,
-              "endIndex": 2434,
-              "text": "*   **AI for Health:** Google is using AI to improve health for everyone"
-            },
-            "groundingChunkIndices": [
-              1
-            ],
-            "confidenceScores": [
-              0.7655365
-            ]
-          },
-          {
-            "segment": {
-              "startIndex": 2436,
-              "endIndex": 2549,
-              "text": "*   **Protecting Forests:** Google Earth is creating a new satellite imagery map to help protect Brazil's forests"
-            },
-            "groundingChunkIndices": [
-              1
-            ],
-            "confidenceScores": [
-              0.83068323
+              0.8990646
             ]
           }
         ],
@@ -295,8 +228,8 @@
   ],
   "usageMetadata": {
     "promptTokenCount": 8,
-    "candidatesTokenCount": 566,
-    "totalTokenCount": 574,
+    "candidatesTokenCount": 392,
+    "totalTokenCount": 400,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
@@ -306,10 +239,10 @@
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 566
+        "tokenCount": 392
       }
     ]
   },
   "modelVersion": "gemini-2.0-flash",
-  "responseId": "gEbRaab_MquM_PUP6v-hwAI"
+  "responseId": "5XDRafayC5ri_uMP3Zmy6QE"
 }

@@ -1,14 +1,14 @@
 {
-  "id": "chatcmpl-DQyjjws5imx3SREjLUOl2YeWsP4mE",
+  "id": "chatcmpl-DR1fw2HFrioYKlvARnV9DRqT6nHeL",
   "object": "chat.completion",
-  "created": 1775322371,
+  "created": 1775333668,
   "model": "o3-mini-2025-01-31",
   "choices": [
     {
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "The word \"strawberry\" contains 3 r letters.",
+        "content": "The word \"strawberry\" has three r's. To see why, you can look at each letter:\n\n1. S  \n2. T  \n3. R  \n4. A  \n5. W  \n6. B  \n7. E  \n8. R  \n9. R  \n10. Y\n\nThere are r's in the 3rd, 8th, and 9th positions.",
         "refusal": null,
         "annotations": []
       },
@@ -17,19 +17,19 @@
   ],
   "usage": {
     "prompt_tokens": 16,
-    "completion_tokens": 90,
-    "total_tokens": 106,
+    "completion_tokens": 480,
+    "total_tokens": 496,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0
     },
     "completion_tokens_details": {
-      "reasoning_tokens": 64,
+      "reasoning_tokens": 384,
       "audio_tokens": 0,
       "accepted_prediction_tokens": 0,
       "rejected_prediction_tokens": 0
     }
   },
   "service_tier": "default",
-  "system_fingerprint": "fp_8c93b0a79f"
+  "system_fingerprint": "fp_95b88a3cd2"
 }

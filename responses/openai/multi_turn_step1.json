@@ -1,25 +1,35 @@
 {
-  "id": "chatcmpl-DR1fqOArFmNQnpMtMieLDW8sxUBNz",
+  "id": "chatcmpl-DR1gElGgZ4TxVPqDXU82h44ukQd9C",
   "object": "chat.completion",
-  "created": 1775333662,
+  "created": 1775333686,
   "model": "gpt-4.1-mini-2025-04-14",
   "choices": [
     {
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "The three primary colors are red, blue, and yellow.",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_mUaoVn0EciomwcngTntLsKQ4",
+            "type": "function",
+            "function": {
+              "name": "get_weather",
+              "arguments": "{\"location\":\"San Francisco\",\"unit\":\"celsius\"}"
+            }
+          }
+        ],
         "refusal": null,
         "annotations": []
       },
       "logprobs": null,
-      "finish_reason": "stop"
+      "finish_reason": "tool_calls"
     }
   ],
   "usage": {
-    "prompt_tokens": 19,
-    "completion_tokens": 12,
-    "total_tokens": 31,
+    "prompt_tokens": 68,
+    "completion_tokens": 20,
+    "total_tokens": 88,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0
@@ -32,5 +42,5 @@
     }
   },
   "service_tier": "default",
-  "system_fingerprint": "fp_b6b587afe3"
+  "system_fingerprint": "fp_8c3acdedcf"
 }

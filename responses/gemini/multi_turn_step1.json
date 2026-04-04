@@ -15,7 +15,7 @@
         "role": "model"
       },
       "finishReason": "STOP",
-      "avgLogprobs": -0.004124850345154603
+      "avgLogprobs": -0.0021116814265648523
     }
   ],
   "usageMetadata": {
@@ -36,5 +36,5 @@
     ]
   },
   "modelVersion": "gemini-2.0-flash",
-  "responseId": "23DRaeOhLYHO_uMPrs3_2Ak"
+  "responseId": "7XDRacqGINWZ9MoPm6mFoQI"
 }
