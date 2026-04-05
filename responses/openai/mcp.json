@@ -1,0 +1,133 @@
+{
+  "id": "resp_0fec80c113fe92930069d1b3440c00819d92aeafbcc616089f",
+  "object": "response",
+  "created_at": 1775350596,
+  "status": "completed",
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1775350601,
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "model": "gpt-4.1-2025-04-14",
+  "output": [
+    {
+      "id": "mcpl_0fec80c113fe92930069d1b3441f68819dbbe00d8aabb7ebb4",
+      "type": "mcp_list_tools",
+      "server_label": "gitmcp",
+      "tools": [
+        {
+          "annotations": {
+            "read_only": false
+          },
+          "description": "Fetch entire documentation file from GitHub repository: openai/tiktoken. Useful for general questions. Always call this tool first if asked about openai/tiktoken.",
+          "input_schema": {
+            "type": "object"
+          },
+          "name": "fetch_tiktoken_documentation"
+        },
+        {
+          "annotations": {
+            "read_only": false
+          },
+          "description": "Semantically search within the fetched documentation from GitHub repository: openai/tiktoken. Useful for specific queries.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "The search query to find relevant documentation"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "name": "search_tiktoken_documentation"
+        }
+      ]
+    },
+    {
+      "id": "mcp_0fec80c113fe92930069d1b346ad4c819d99b63e3c96821801",
+      "type": "mcp_call",
+      "status": "completed",
+      "approval_request_id": null,
+      "arguments": "{\"query\":\"tokens\"}",
+      "error": null,
+      "name": "search_tiktoken_documentation",
+      "output": "### Search Results for: \"tokens\"\n\nNo relevant documentation found for your query. It's either being indexed or the search query did not match any documentation.\n\nAs a fallback, this is the documentation for openai/tiktoken:\n\n# \u23f3 tiktoken\n\ntiktoken is a fast [BPE](https://en.wikipedia.org/wiki/Byte_pair_encoding) tokeniser for use with\nOpenAI's models.\n\n```python\nimport tiktoken\nenc = tiktoken.get_encoding(\"o200k_base\")\nassert enc.decode(enc.encode(\"hello world\")) == \"hello world\"\n\n# To get the tokeniser corresponding to a specific model in the OpenAI API:\nenc = tiktoken.encoding_for_model(\"gpt-4o\")\n```\n\nThe open source version of `tiktoken` can be installed from [PyPI](https://pypi.org/project/tiktoken):\n```\npip install tiktoken\n```\n\nThe tokeniser API is documented in `tiktoken/core.py`.\n\nExample code using `tiktoken` can be found in the\n[OpenAI Cookbook](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb).\n\n\n## Performance\n\n`tiktoken` is between 3-6x faster than a comparable open source tokeniser:\n\n![image](https://raw.githubusercontent.com/openai/tiktoken/main/perf.svg)\n\nPerformance measured on 1GB of text using the GPT-2 tokeniser, using `GPT2TokenizerFast` from\n`tokenizers==0.13.2`, `transformers==4.24.0` and `tiktoken==0.2.0`.\n\n\n## Getting help\n\nPlease post questions in the [issue tracker](https://github.com/openai/tiktoken/issues).\n\nIf you work at OpenAI, make sure to check the internal documentation or feel free to contact\n@shantanu.\n\n## What is BPE anyway?\n\nLanguage models don't see text like you and I, instead they see a sequence of numbers (known as tokens).\nByte pair encoding (BPE) is a way of converting text into tokens. It has a couple desirable\nproperties:\n1) It's reversible and lossless, so you can convert tokens back into the original text\n2) It works on arbitrary text, even text that is not in the tokeniser's training data\n3) It compresses the text: the token sequence is shorter than the bytes corresponding to the\n   original text. On average, in practice, each token corresponds to about 4 bytes.\n4) It attempts to let the model see common subwords. For instance, \"ing\" is a common subword in\n   English, so BPE encodings will often split \"encoding\" into tokens like \"encod\" and \"ing\"\n   (instead of e.g. \"enc\" and \"oding\"). Because the model will then see the \"ing\" token again and\n   again in different contexts, it helps models generalise and better understand grammar.\n\n`tiktoken` contains an educational submodule that is friendlier if you want to learn more about\nthe details of BPE, including code that helps visualise the BPE procedure:\n```python\nfrom tiktoken._educational import *\n\n# Train a BPE tokeniser on a small amount of text\nenc = train_simple_encoding()\n\n# Visualise how the GPT-4 encoder encodes text\nenc = SimpleBytePairEncoding.from_tiktoken(\"cl100k_base\")\nenc.encode(\"hello world aaaaaaaaaaaa\")\n```\n\n\n## Extending tiktoken\n\nYou may wish to extend `tiktoken` to support new encodings. There are two ways to do this.\n\n\n**Create your `Encoding` object exactly the way you want and simply pass it around.**\n\n```python\ncl100k_base = tiktoken.get_encoding(\"cl100k_base\")\n\n# In production, load the arguments directly instead of accessing private attributes\n# See openai_public.py for examples of arguments for specific encodings\nenc = tiktoken.Encoding(\n    # If you're changing the set of special tokens, make sure to use a different name\n    # It should be clear from the name what behaviour to expect.\n    name=\"cl100k_im\",\n    pat_str=cl100k_base._pat_str,\n    mergeable_ranks=cl100k_base._mergeable_ranks,\n    special_tokens={\n        **cl100k_base._special_tokens,\n        \"<|im_start|>\": 100264,\n        \"<|im_end|>\": 100265,\n    }\n)\n```\n\n**Use the `tiktoken_ext` plugin mechanism to register your `Encoding` objects with `tiktoken`.**\n\nThis is only useful if you need `tiktoken.get_encoding` to find your encoding, otherwise prefer\noption 1.\n\nTo do this, you'll need to create a namespace package under `tiktoken_ext`.\n\nLayout your project like this, making sure to omit the `tiktoken_ext/__init__.py` file:\n```\nmy_tiktoken_extension\n\u251c\u2500\u2500 tiktoken_ext\n\u2502\u00a0\u00a0 \u2514\u2500\u2500 my_encodings.py\n\u2514\u2500\u2500 setup.py\n```\n\n`my_encodings.py` should be a module that contains a variable named `ENCODING_CONSTRUCTORS`.\nThis is a dictionary from an encoding name to a function that takes no arguments and returns\narguments that can be passed to `tiktoken.Encoding` to construct that encoding. For an example, see\n`tiktoken_ext/openai_public.py`. For precise details, see `tiktoken/registry.py`.\n\nYour `setup.py` should look something like this:\n```python\nfrom setuptools import setup, find_namespace_packages\n\nsetup(\n    name=\"my_tiktoken_extension\",\n    packages=find_namespace_packages(include=['tiktoken_ext*']),\n    install_requires=[\"tiktoken\"],\n    ...\n)\n```\n\nThen simply `pip install ./my_tiktoken_extension` and you should be able to use your\ncustom encodings! Make sure **not** to use an editable install.\n\n\n\nIf you'd like to retry the search, try changing the query to increase the likelihood of a match.",
+      "server_label": "gitmcp"
+    },
+    {
+      "id": "msg_0fec80c113fe92930069d1b3473378819db6695339364b027f",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "Here's what the documentation reveals about \"tokens\" in the context of tiktoken:\n\n### What Are Tokens?\n- Language models, like those from OpenAI, understand input as a sequence of numbers called **tokens**. Human-readable text is transformed into tokens so the model can process it.\n\n### How Does tiktoken Handle Tokens?\n- tiktoken uses **Byte Pair Encoding (BPE)** to convert text into tokens. \n- BPE is:\n  - Reversible and lossless (can convert tokens back to original text)\n  - Works with any text\n  - Compresses text: on average, 1 token \u2248 4 bytes\n  - Deals with common subwords to help models generalize (e.g., \"encoding\" might split into \"encod\" + \"ing\")\n\n### Example: Encoding and Decoding Text\n```python\nimport tiktoken\nenc = tiktoken.get_encoding(\"o200k_base\")\ntokens = enc.encode(\"hello world\")        # Tokenizes text\ntext = enc.decode(tokens)                 # Converts tokens back to text\n```\n\n### Counting Tokens\n- tiktoken makes it fast and easy to count the number of tokens, which is important for managing model limits.\n\n### Using With OpenAI Models\nTo get the tokenizer for a specific OpenAI model:\n```python\nenc = tiktoken.encoding_for_model(\"gpt-4o\")\n```\n\n### Visualization and Exploration\n- tiktoken features an educational submodule to visualize how text is split into tokens, useful for learning more about BPE and tokenization.\n\nIf you have a specific question about how to use, count, or manage tokens with tiktoken, let me know!"
+        }
+      ],
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": null,
+  "reasoning": {
+    "effort": null,
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "type": "mcp",
+      "allowed_tools": [
+        "search_tiktoken_documentation",
+        "fetch_tiktoken_documentation"
+      ],
+      "headers": null,
+      "require_approval": "never",
+      "server_description": null,
+      "server_label": "gitmcp",
+      "server_url": "https://gitmcp.io/openai/tiktoken"
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 1.0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1452,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 372,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 1824
+  },
+  "user": null,
+  "metadata": {}
+}

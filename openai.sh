@@ -385,5 +385,51 @@ curl -s "$BASE_URL/chat/completions" \
     ]
   }' | tee "$OUTDIR/reasoning_tool_call_streaming.txt"
 
+# --- 13. MCP server-side tool (responses API) ---
+echo ""
+echo "==> OpenAI: MCP server-side tool"
+curl -s "$BASE_URL/responses" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4.1",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "gitmcp",
+        "server_url": "https://gitmcp.io/openai/tiktoken",
+        "allowed_tools": [
+          "search_tiktoken_documentation",
+          "fetch_tiktoken_documentation"
+        ],
+        "require_approval": "never"
+      }
+    ],
+    "input": "search documentation for tokens"
+  }' | tee "$OUTDIR/mcp.json" | python3 -m json.tool
+
+echo ""
+echo "==> OpenAI: MCP server-side tool (streaming)"
+curl -s "$BASE_URL/responses" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4.1",
+    "stream": true,
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "gitmcp",
+        "server_url": "https://gitmcp.io/openai/tiktoken",
+        "allowed_tools": [
+          "search_tiktoken_documentation",
+          "fetch_tiktoken_documentation"
+        ],
+        "require_approval": "never"
+      }
+    ],
+    "input": "search documentation for tokens"
+  }' | tee "$OUTDIR/mcp_streaming.txt"
+
 echo ""
 echo "==> Done. Responses saved to $OUTDIR/"
