@@ -348,6 +348,95 @@ Other server-side tools:
 - `{"code_execution": {}}` — runs Python code server-side
 - `{"google_search_retrieval": {"dynamic_retrieval_config": {"mode": "MODE_DYNAMIC", "dynamic_threshold": 0.5}}}` — dynamic search grounding
 
+## MCP (Model Context Protocol)
+
+Gemini supports server-side MCP via `mcpServers` in the tools array. The API connects to remote MCP servers using Streamable HTTP transport.
+
+Requires `gemini-2.5-flash` or later (not supported on `gemini-2.0-flash`).
+
+```json
+{
+  "contents": [
+    {"role": "user", "parts": [{"text": "search documentation for tokens"}]}
+  ],
+  "tools": [
+    {
+      "mcpServers": [
+        {
+          "name": "gitmcp",
+          "streamableHttpTransport": {
+            "url": "https://gitmcp.io/openai/tiktoken"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+- `mcpServers` is an array inside a tool object (alongside `function_declarations`, `google_search`, etc.)
+- Each server has `name` and `streamableHttpTransport` with:
+  - `url` — the MCP server endpoint
+  - `headers` — optional auth headers (e.g. `{"Authorization": "Bearer token"}`)
+  - `timeout` — HTTP timeout (e.g. `"30s"`)
+  - `sseReadTimeout` — SSE read timeout (e.g. `"60s"`)
+  - `terminateOnClose` — boolean
+- Not supported on Vertex AI — Gemini API only
+
+Response uses standard `functionCall` / `functionResponse` parts, with tool names prefixed by the server name:
+
+```json
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "functionCall": {
+              "name": "gitmcp_search_tiktoken_documentation",
+              "args": {"query": "tokens"}
+            }
+          },
+          {
+            "functionResponse": {
+              "name": "gitmcp_search_tiktoken_documentation",
+              "response": {
+                "result": "### Search Results...",
+                "call_tool_result_json": "{...}"
+              }
+            }
+          },
+          {"text": "Based on the documentation..."}
+        ],
+        "role": "model"
+      }
+    }
+  ]
+}
+```
+
+- Tool names are prefixed with the server name: `gitmcp_search_tiktoken_documentation`
+- `functionCall` and `functionResponse` appear as parts in the same response (server-side execution)
+- `functionResponse.response` includes both `result` (plain text) and `call_tool_result_json` (raw MCP result)
+- In streaming, the function call/response arrive as complete parts in early chunks, followed by text chunks
+
+## Thinking with Include Thoughts
+
+By default, thinking content is suppressed (only `thoughtsTokenCount` appears in usage). To include the actual thinking text, set `include_thoughts: true`:
+
+```json
+{
+  "generationConfig": {
+    "thinking_config": {
+      "thinking_budget": 1024,
+      "include_thoughts": true
+    }
+  }
+}
+```
+
+Response parts with `"thought": true` contain the reasoning text. Without this flag, thinking parts are omitted from the response.
+
 ## Generation Config
 
 ```json

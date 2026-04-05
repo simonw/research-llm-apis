@@ -240,6 +240,65 @@ The Responses API is a newer endpoint that supports built-in server-side tools:
 - Can also use `file_search` and `code_interpreter` as built-in tools
 - Streaming works with `"stream": true` and returns SSE events
 
+## MCP (Model Context Protocol) — Responses API
+
+The Responses API supports server-side MCP, where OpenAI's servers connect to a remote MCP server on your behalf:
+
+```json
+{
+  "model": "gpt-4.1",
+  "input": "search documentation for tokens",
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "gitmcp",
+      "server_url": "https://gitmcp.io/openai/tiktoken",
+      "allowed_tools": ["search_tiktoken_documentation", "fetch_tiktoken_documentation"],
+      "require_approval": "never"
+    }
+  ]
+}
+```
+
+- `server_label` — a name you assign to identify this MCP server
+- `server_url` — the URL of the remote MCP server endpoint
+- `allowed_tools` — whitelist of tool names the model may call (optional)
+- `require_approval` — `"never"`, `"always"`, or per-tool approval settings
+
+Response includes three output item types:
+
+```json
+{
+  "output": [
+    {
+      "type": "mcp_list_tools",
+      "server_label": "gitmcp",
+      "tools": [
+        {"name": "search_tiktoken_documentation", "description": "...", "input_schema": {...}}
+      ]
+    },
+    {
+      "type": "mcp_call",
+      "status": "completed",
+      "name": "search_tiktoken_documentation",
+      "arguments": "{\"query\":\"tokens\"}",
+      "output": "### Search Results for: \"tokens\"...",
+      "server_label": "gitmcp"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "content": [{"type": "output_text", "text": "Here's what the documentation says..."}]
+    }
+  ]
+}
+```
+
+- `mcp_list_tools` — tool discovery result from the MCP server
+- `mcp_call` — each individual tool invocation with its arguments and output
+- `message` — the final text response from the model
+- Streaming works with `"stream": true` and returns SSE events with `response.mcp_list_tools.*`, `response.mcp_call.*`, and `response.output_text.*` event types
+
 ## Key Differences from Other Providers
 
 - Uses `role: "tool"` for tool results (not `role: "user"` with special content)

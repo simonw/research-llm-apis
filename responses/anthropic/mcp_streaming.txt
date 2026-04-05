@@ -1,0 +1,177 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-sonnet-4-5-20250929","id":"msg_018TNtkqMfXQXcns5pakexvZ","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":997,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}       }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"mcp_tool_use","id":"mcptoolu_01BwigmFdhzmvFxXaWihk2TL","name":"search_anthropic_docs","input":{},"server_name":"gitmcp"}              }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"input_json_delta","partial_json":""}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"input_json_delta","partial_json":"{\"query\": \"t"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"input_json_delta","partial_json":"ool use\"}"}    }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0  }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"mcp_tool_result","tool_use_id":"mcptoolu_01BwigmFdhzmvFxXaWihk2TL","is_error":false,"content":[{"type":"text","text":"### Search Results for: \"tool use\"\n\nNo relevant documentation found for your query. It's either being indexed or the search query did not match any documentation.\n\nAs a fallback, this is the documentation for anthropics/anthropic-cookbook:\n\nNo documentation found.\n\nIf you'd like to retry the search, try changing the query to increase the likelihood of a match."}]}           }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1           }
+
+event: content_block_start
+data: {"type":"content_block_start","index":2,"content_block":{"type":"text","text":""}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"text_delta","text":"Let me first"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"text_delta","text":" fetch the documentation to see what's available:"} }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":2      }
+
+event: content_block_start
+data: {"type":"content_block_start","index":3,"content_block":{"type":"mcp_tool_use","id":"mcptoolu_0191t4SZJf4dNFbHAEv1rXRo","name":"fetch_anthropic_docs","input":{},"server_name":"gitmcp"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":""}        }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":3 }
+
+event: content_block_start
+data: {"type":"content_block_start","index":4,"content_block":{"type":"mcp_tool_result","tool_use_id":"mcptoolu_0191t4SZJf4dNFbHAEv1rXRo","is_error":false,"content":[{"type":"text","text":"No documentation found."}]}         }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":4     }
+
+event: content_block_start
+data: {"type":"content_block_start","index":5,"content_block":{"type":"text","text":""}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":5,"delta":{"type":"text_delta","text":"Let me search"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":5,"delta":{"type":"text_delta","text":" for tool use in the code repository instead:"}          }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":5          }
+
+event: content_block_start
+data: {"type":"content_block_start","index":6,"content_block":{"type":"mcp_tool_use","id":"mcptoolu_018CbQRYiXqKq8VbmEXZQ5KX","name":"search_anthropic_code","input":{},"server_name":"gitmcp"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":6,"delta":{"type":"input_json_delta","partial_json":""} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":6,"delta":{"type":"input_json_delta","partial_json":"{\""}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":6,"delta":{"type":"input_json_delta","partial_json":"qu"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":6,"delta":{"type":"input_json_delta","partial_json":"ery\": \"too"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":6,"delta":{"type":"input_json_delta","partial_json":"l use\""}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":6,"delta":{"type":"input_json_delta","partial_json":", \"page\": 1}"}         }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":6              }
+
+event: content_block_start
+data: {"type":"content_block_start","index":7,"content_block":{"type":"mcp_tool_result","tool_use_id":"mcptoolu_018CbQRYiXqKq8VbmEXZQ5KX","is_error":false,"content":[{"type":"text","text":"### Code Search Results for: \"tool use\"\n\nNo code matches found in anthropics/anthropic-cookbook."}]}  }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":7       }
+
+event: content_block_start
+data: {"type":"content_block_start","index":8,"content_block":{"type":"text","text":""}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":8,"delta":{"type":"text_delta","text":"Let me try a more specific"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":8,"delta":{"type":"text_delta","text":" search:"}  }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":8   }
+
+event: content_block_start
+data: {"type":"content_block_start","index":9,"content_block":{"type":"mcp_tool_use","id":"mcptoolu_016oQQdwPmYEPunxKhoJGMBQ","name":"search_anthropic_code","input":{},"server_name":"gitmcp"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":9,"delta":{"type":"input_json_delta","partial_json":""}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":9,"delta":{"type":"input_json_delta","partial_json":"{\"query\""}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":9,"delta":{"type":"input_json_delta","partial_json":": \"too"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":9,"delta":{"type":"input_json_delta","partial_json":"ls\""}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":9,"delta":{"type":"input_json_delta","partial_json":", \"page\""}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":9,"delta":{"type":"input_json_delta","partial_json":": 1}"}             }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":9  }
+
+event: content_block_start
+data: {"type":"content_block_start","index":10,"content_block":{"type":"mcp_tool_result","tool_use_id":"mcptoolu_016oQQdwPmYEPunxKhoJGMBQ","is_error":false,"content":[{"type":"text","text":"### Code Search Results for: \"tools\"\n\nNo code matches found in anthropics/anthropic-cookbook."}]}  }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":10      }
+
+event: content_block_start
+data: {"type":"content_block_start","index":11,"content_block":{"type":"text","text":""}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":11,"delta":{"type":"text_delta","text":"I"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":11,"delta":{"type":"text_delta","text":" apologize, but I'm unable to find documentation or code related to \"tool use\" in the anthropics/anthropic-cookbook repository. The repository"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":11,"delta":{"type":"text_delta","text":" appears to either not have indexed documentation available through this interface"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":11,"delta":{"type":"text_delta","text":", or the content may not contain examples specifically labeled as \"tool use.\"\n\nHowever"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":11,"delta":{"type":"text_delta","text":", I can help you in other ways:\n\n1. **Check Anthropic's official documentation**: Tool use (also called"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":11,"delta":{"type":"text_delta","text":" function calling) is typically documented in Anthropic's main API documentation\n2. **Try alternative"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":11,"delta":{"type":"text_delta","text":" search terms**: If you'd like, I can search for related terms like:\n   - \"function calling\"\n   - \"function\""} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":11,"delta":{"type":"text_delta","text":"\n   - \"API\"\n   - Specific cookbook topics you're interested in"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":11,"delta":{"type":"text_delta","text":"\n\nWould you like me to try searching with different terms, or would you prefer to browse Anthropic's main documentation for tool use information?"}           }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":11           }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":6178,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"output_tokens":478,"server_tool_use":{"web_search_requests":0,"web_fetch_requests":0}}  }
+
+event: message_stop
+data: {"type":"message_stop" }
+

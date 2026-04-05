@@ -417,5 +417,58 @@ curl -s "$BASE_URL/messages" \
     ]
   }' | tee "$OUTDIR/thinking_tool_call_streaming.txt"
 
+# --- 13. MCP server-side tool (beta) ---
+# Requires anthropic-beta header and both mcp_servers + mcp_toolset in tools
+echo ""
+echo "==> Anthropic: MCP server-side tool"
+curl -s "$BASE_URL/messages?beta=true" \
+  -H "x-api-key: $API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: mcp-client-2025-11-20" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-5-20250929",
+    "max_tokens": 1024,
+    "mcp_servers": [
+      {
+        "type": "url",
+        "name": "gitmcp",
+        "url": "https://gitmcp.io/anthropics/anthropic-cookbook"
+      }
+    ],
+    "tools": [
+      {"type": "mcp_toolset", "mcp_server_name": "gitmcp"}
+    ],
+    "messages": [
+      {"role": "user", "content": "search documentation for tool use"}
+    ]
+  }' | tee "$OUTDIR/mcp.json" | python3 -m json.tool
+
+echo ""
+echo "==> Anthropic: MCP server-side tool (streaming)"
+curl -s "$BASE_URL/messages?beta=true" \
+  -H "x-api-key: $API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: mcp-client-2025-11-20" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "claude-sonnet-4-5-20250929",
+    "max_tokens": 1024,
+    "stream": true,
+    "mcp_servers": [
+      {
+        "type": "url",
+        "name": "gitmcp",
+        "url": "https://gitmcp.io/anthropics/anthropic-cookbook"
+      }
+    ],
+    "tools": [
+      {"type": "mcp_toolset", "mcp_server_name": "gitmcp"}
+    ],
+    "messages": [
+      {"role": "user", "content": "search documentation for tool use"}
+    ]
+  }' | tee "$OUTDIR/mcp_streaming.txt"
+
 echo ""
 echo "==> Done. Responses saved to $OUTDIR/"

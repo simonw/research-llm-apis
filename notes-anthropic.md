@@ -302,6 +302,73 @@ Response content blocks for web search:
 }
 ```
 
+## MCP (Model Context Protocol) — Beta
+
+Anthropic supports server-side MCP via a beta API. The API connects to remote MCP servers and executes tools on your behalf.
+
+Requires:
+- Beta endpoint: `POST /v1/messages?beta=true`
+- Beta header: `anthropic-beta: mcp-client-2025-11-20`
+- Both `mcp_servers` (top-level) AND `tools` with an `mcp_toolset` entry
+
+```json
+{
+  "model": "claude-sonnet-4-5-20250929",
+  "max_tokens": 1024,
+  "mcp_servers": [
+    {
+      "type": "url",
+      "name": "gitmcp",
+      "url": "https://gitmcp.io/anthropics/anthropic-cookbook"
+    }
+  ],
+  "tools": [
+    {"type": "mcp_toolset", "mcp_server_name": "gitmcp"}
+  ],
+  "messages": [
+    {"role": "user", "content": "search documentation for tool use"}
+  ]
+}
+```
+
+- `mcp_servers` defines the remote MCP server(s) to connect to
+  - `type` must be `"url"`
+  - `name` is your label for the server (referenced by `mcp_toolset`)
+  - `url` is the MCP server endpoint
+  - Optional `authorization_token` for authenticated servers
+- `tools` must include `{"type": "mcp_toolset", "mcp_server_name": "..."}` referencing the server by name
+- `mcp_toolset` can optionally include `default_config` and per-tool `configs`
+
+Response includes MCP-specific content block types:
+
+```json
+{
+  "content": [
+    {"type": "text", "text": "I'll search for that."},
+    {
+      "type": "mcp_tool_use",
+      "id": "mcptoolu_01DH6bc3QrqEnTcLH5jdtwCw",
+      "name": "search_anthropic_docs",
+      "input": {"query": "tool use"},
+      "server_name": "gitmcp"
+    },
+    {
+      "type": "mcp_tool_result",
+      "tool_use_id": "mcptoolu_01DH6bc3QrqEnTcLH5jdtwCw",
+      "is_error": false,
+      "content": [{"type": "text", "text": "### Search Results..."}]
+    },
+    {"type": "text", "text": "Based on the search results..."}
+  ]
+}
+```
+
+- `mcp_tool_use` — the model's tool call (like `tool_use` but with `server_name`)
+- `mcp_tool_result` — the server-side result (appears automatically, not sent by the client)
+- Multiple tool call/result pairs can appear interleaved with text in a single response
+- The model may make multiple MCP calls in sequence within one response
+- In streaming, `mcp_tool_use` blocks stream like regular `tool_use` (with `input_json_delta`), while `mcp_tool_result` blocks arrive as complete `content_block_start` events
+
 ## Key Differences from Other Providers
 
 - Content is always an array of typed blocks (text, tool_use, thinking, image, etc.)

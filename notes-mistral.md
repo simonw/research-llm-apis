@@ -219,17 +219,57 @@ Also supports:
 }
 ```
 
+### Tool Call ID Format
+
+Mistral requires tool call IDs to be exactly 9 alphanumeric characters (`a-z`, `A-Z`, `0-9`). This is different from OpenAI (which uses longer IDs like `call_abc123...`) and is important when constructing multi-turn conversations with tool results.
+
+## MCP (Model Context Protocol) — Connectors API
+
+Mistral supports MCP via a two-step "connectors" approach, unlike OpenAI/Anthropic/Gemini which allow inline MCP server definitions per request.
+
+**Step 1: Register a connector** (one-time setup)
+
+```
+POST https://api.mistral.ai/v1/connectors
+```
+
+```json
+{
+  "name": "my_mcp_server",
+  "description": "Description of the MCP server",
+  "server": "https://mcp.example.com/sse",
+  "headers": {"Authorization": "Bearer token"},
+  "visibility": "private"
+}
+```
+
+- `server` — the URL of the MCP server
+- `headers` — optional organization-level headers for authentication
+- `auth_data` — optional additional OAuth authentication config
+- `visibility` — `"private"` or `"public"`
+- Returns a connector ID that can be referenced later
+
+**Step 2: Use in conversations**
+
+Connectors are used through the Conversations API (`/v1/conversations`) or the Agents API, where registered connectors are referenced by ID. The SDK's `register_mcp_client` method handles tool discovery automatically.
+
+This is fundamentally different from other providers:
+- OpenAI, Anthropic, and Gemini allow passing MCP server URLs inline in each request
+- Mistral requires pre-registration of MCP servers as "connectors", then referencing them
+- The connector approach is more like a managed integration than ad-hoc server-side execution
+
 ## Key Differences from OpenAI
 
 - API is largely OpenAI-compatible but with some extensions
 - `image_url` can be a plain string (not just an object)
 - Tool call `arguments` may be a parsed dict or a JSON string
 - Tool result messages include `name` field
+- Tool call IDs must be exactly 9 alphanumeric characters
 - `tool_choice: "any"` forces tool use (OpenAI uses `"required"`)
 - Has agents API as a separate endpoint
 - Supports document content types (`document_url`, `document_chunk`)
+- MCP uses a pre-registered connectors model, not inline per-request
 - No reasoning/thinking models at this time
-- No server-side tool execution (web search etc.) at this time
 
 ## Key Differences from Anthropic
 
@@ -238,4 +278,4 @@ Also supports:
 - Tool results use `role: "tool"`, not embedded in user messages
 - Content can be a plain string (not always an array of blocks)
 - No extended thinking / reasoning features
-- No built-in server-side tools
+- MCP requires pre-registered connectors rather than inline server definitions

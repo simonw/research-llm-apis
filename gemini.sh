@@ -490,5 +490,57 @@ curl -s "$BASE_URL/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=$AP
     }
   }' | tee "$OUTDIR/thinking_tool_call_streaming.txt"
 
+# --- 13. MCP server-side tool ---
+# Note: MCP requires gemini-2.5-flash or later; gemini-2.0-flash does not support mcpServers
+echo ""
+echo "==> Gemini: MCP server-side tool"
+curl -s "$BASE_URL/models/gemini-2.5-flash:generateContent?key=$API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [{"text": "search documentation for tokens"}]
+      }
+    ],
+    "tools": [
+      {
+        "mcpServers": [
+          {
+            "name": "gitmcp",
+            "streamableHttpTransport": {
+              "url": "https://gitmcp.io/openai/tiktoken"
+            }
+          }
+        ]
+      }
+    ]
+  }' | tee "$OUTDIR/mcp.json" | python3 -m json.tool
+
+echo ""
+echo "==> Gemini: MCP server-side tool (streaming)"
+curl -s "$BASE_URL/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=$API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [{"text": "search documentation for tokens"}]
+      }
+    ],
+    "tools": [
+      {
+        "mcpServers": [
+          {
+            "name": "gitmcp",
+            "streamableHttpTransport": {
+              "url": "https://gitmcp.io/openai/tiktoken"
+            }
+          }
+        ]
+      }
+    ]
+  }' | tee "$OUTDIR/mcp_streaming.txt"
+
 echo ""
 echo "==> Done. Responses saved to $OUTDIR/"
